@@ -9,6 +9,14 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+List tip = [
+"White Chocolate",
+"Milk Chocolate",
+"Dark Chocolate",
+];
+
+int selectedtipIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +92,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               color: Colors.black.withValues(alpha: 0.3),
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,30 +118,40 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     const SizedBox(height: 6),
                                     Row(
                                       children: [
-                                        SvgPicture.asset(
-                                          "assets/icons/Star.svg",
-                                        ),
+                                        SvgPicture.asset("assets/icons/Star.svg"),
                                         const SizedBox(width: 5),
-                                        Text(
-                                          "4.8",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          "(6,098)",
-                                          style: TextStyle(
-                                            color: Color(
-                                              0xffFFFFFF,
-                                            ).withValues(alpha: .8),
-                                          ),
+                                        Text("4.8",style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w400)),
+                                        const SizedBox(width: 5), 
+                                        Text("(6,098)",style: TextStyle(color: Color(0xffFFFFFF,).withValues(alpha: .6),fontSize: 10,fontWeight: FontWeight.w400),
                                         ),
                                       ],
                                     ),
-                                    Column(),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                      Column( 
+                                        children: [ 
+                                          SvgPicture.asset("assets/icons/Group.svg"),
+                                          const SizedBox(height: 10,),
+                                          const Text("Coffee", style: TextStyle(color: Color(0xffDDDDDD), fontSize: 12, fontWeight: FontWeight.w400))
+                                        ],
+                                      ),
+                                      const SizedBox(width: 30,),
+                                      Column( 
+                                        children: [ 
+                                          SvgPicture.asset("assets/icons/Vector.svg"),
+                                          const SizedBox(height: 10,),
+                                          const Text("Chocolate", style: TextStyle(color: Color(0xffDDDDDD), fontSize: 12, fontWeight: FontWeight.w400))
+                                        ],
+                                      ),
+
+                                    ],
+                                    ),
+                                    const SizedBox(height: 5,), 
+                                    Text("Midium Roasted",style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w400)),
                                   ],
                                 ),
                               ],
@@ -141,6 +160,46 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 3,),
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text("Description",style:TextStyle(fontSize: 15,fontWeight: FontWeight.bold))),
+                    const SizedBox(height: 15,),
+                    const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel tincidunt et ullamcorper eu, vivamus semper commodo",
+                          style: TextStyle(height: 1.83,fontSize: 12,fontWeight: FontWeight.w400,color: Color(0xff444444)),),
+                    const SizedBox(height: 25,),
+                    const Align(alignment: Alignment.topLeft, child: Text("Choice of Chocolate",style:TextStyle(fontSize: 15,fontWeight: FontWeight.bold))),
+                    const SizedBox(height: 15,),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 32,
+                      child: ListView.builder(
+                        itemCount: tip.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index){
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedtipIndex=index; 
+                            });
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(right: 15),
+                            width: 125,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: index==selectedtipIndex?Color(0xff967259):Colors.transparent,
+                              border: Border.all(width: 1, color: Color(0xff967259)),
+                              borderRadius: BorderRadius.circular(100)
+                            ),
+                            child: Text(tip[index],style: TextStyle(color : index==selectedtipIndex?Colors.white:Color(0xff777777),fontSize: 12,fontWeight: FontWeight.w500),),
+                          ),
+                        );
+                      },),
+                    ),
+                    const SizedBox(height: 25,),
+                    const Text("Quantity",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
