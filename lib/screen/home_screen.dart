@@ -1,3 +1,4 @@
+import 'package:coffee_app/screen/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -154,7 +155,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsScreen(),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   padding: const EdgeInsets.only(
                                     top: 10,
