@@ -16,6 +16,18 @@ List tip = [
 ];
 
 int selectedtipIndex = 0;
+int counter = 0;
+
+void addition(){
+  setState(() {
+    counter++;
+  });
+}
+void subtraction(){
+  setState(() {
+    counter++;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +211,28 @@ int selectedtipIndex = 0;
                       },),
                     ),
                     const SizedBox(height: 25,),
-                    const Text("Quantity",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
+                    const Text("Quantity",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                        style: IconButton.styleFrom(fixedSize: Size(35,35),backgroundColor: Color(0xff967259)),
+                        onPressed: () {
+                          subtraction();
+                        }, 
+                        icon: Icon(Icons.remove, color:Colors.white),
+                        ),
+                        Text("${context}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),),
+                        IconButton(
+                        style: IconButton.styleFrom(fixedSize: Size(35,35),backgroundColor: Color(0xff967259)),
+                        onPressed: () {
+                            addition();
+                        }, 
+                        icon: Icon(Icons.add, color:Colors.white),
+                        ),
+                      ],
+                    )
+
                   ],
                 ),
               ),
