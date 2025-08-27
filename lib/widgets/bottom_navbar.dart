@@ -1,3 +1,4 @@
+import 'package:coffee_app/screen/card_screen.dart';
 import 'package:coffee_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,8 +15,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
   List pages = [
     HomeScreen(),
     Center(child: Text("Favorite screen")),
-    Center(child: Text("Cart screen")),
-    Center(child: Text("Natification screen")),
+    CardScreen(),
+    // Center(child: Text("Natification screen")),
     Center(child: Text("Natification screen")),
     Center(child: Text("Profile screen")),
   ];

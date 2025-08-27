@@ -16,7 +16,7 @@ List tip = [
 ];
 
 int selectedtipIndex = 0;
-int counter = 0;
+int counter = 1;
 
 void addition(){
   setState(() {
@@ -25,13 +25,17 @@ void addition(){
 }
 void subtraction(){
   setState(() {
-    counter++;
+    if (counter>1){
+    counter--;
+
+    }
   });
 }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
@@ -210,10 +214,11 @@ void subtraction(){
                         );
                       },),
                     ),
-                    const SizedBox(height: 25,),
+                    const SizedBox(height: 25),
                     const Text("Quantity",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 15),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center, 
                       children: [
                         IconButton(
                         style: IconButton.styleFrom(fixedSize: Size(35,35),backgroundColor: Color(0xff967259)),
@@ -222,7 +227,10 @@ void subtraction(){
                         }, 
                         icon: Icon(Icons.remove, color:Colors.white),
                         ),
-                        Text("${context}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),),
+                        const SizedBox(width: 26,),
+                        Text("${counter}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),),
+                        const SizedBox(width: 26,),
+
                         IconButton(
                         style: IconButton.styleFrom(fixedSize: Size(35,35),backgroundColor: Color(0xff967259)),
                         onPressed: () {
@@ -239,6 +247,39 @@ void subtraction(){
             ),
           ),
         ],
+      ),
+      bottomSheet: Container(
+        padding: const EdgeInsets.only(left: 23, right: 23,bottom: 11),
+        width: MediaQuery.of(context).size.width,
+        height: 70,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+               children: [
+                Text("Price",style: TextStyle(fontSize: 14,color: Color(0xff777777),fontWeight: FontWeight.w400),),
+                Row(
+                  children: [
+                    Text("\$",style: TextStyle(color: Color(0xff967259), fontSize: 24,fontWeight: FontWeight.bold),),
+                    const SizedBox(width: 5,),
+                    Text("${(4.20 * counter).toStringAsFixed(2)}",style: TextStyle(color: Color(0xff444444), fontSize:24,fontWeight: FontWeight.bold ))
+                  ],
+                ),
+              ],
+            ),
+                Container(
+                  width: 190,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Color(0xff967259),
+                    borderRadius: BorderRadius.circular(100)
+                  ),
+                  child: TextButton(onPressed: () {}, child:Text("Buy Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 16)),) 
+                ),
+                
+          ],
+        ),
       ),
     );
   }
