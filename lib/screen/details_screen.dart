@@ -18,6 +18,14 @@ List tip = [
 int selectedtipIndex = 0;
 int counter = 1;
 
+bool like=false;
+void likes(){
+  setState(() {
+    like=!like;
+
+  });
+}
+
 void addition(){
   setState(() {
     counter++;
@@ -91,9 +99,10 @@ void subtraction(){
                                   ),
                                   child: IconButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      // Navigator.of(context).pop();
+                                      likes();
                                     },
-                                    icon: Icon(Icons.favorite_border, size: 18),
+                                    icon:like?Icon(Icons.favorite , size: 18,color: Colors.red,): Icon(Icons.favorite_border, size: 18),
                                   ),
                                 ),
                               ],
